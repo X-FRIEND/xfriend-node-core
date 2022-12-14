@@ -1,0 +1,1 @@
+# xfried-node-core
