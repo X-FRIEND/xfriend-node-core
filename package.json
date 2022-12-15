@@ -1,0 +1,113 @@
+{
+  "main": "./index.js",
+  "name": "xfriend-node-core",
+  "author": "xfriend <arquitetura@xfriend.net>",
+  "version": "1.0.0",
+  "files": [
+    "src",
+    "index.js",
+    "package.json"
+  ],
+  "contributors": [
+    "Ediberto BO <edibertooliveira@aol.com"
+  ],
+  "dependencies": {
+    "aws-sdk": "^2.613.0",
+    "aws-serverless-express": "^3.3.6",
+    "bluebird": "^3.7.2",
+    "body-parser": "^1.19.0",
+    "cls-hooked": "^4.2.2",
+    "commander": "^4.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "highlight.js": "10.1.1",
+    "humps": "^2.0.1",
+    "inspector-proxy": "^1.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "object-sizeof": "^1.5.2",
+    "prettyjson": "^1.2.5",
+    "typeorm": "^0.2.22",
+    "uuid": "^8.0.0",
+    "validator": "^13.0.0",
+    "yargs": "^15.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "babel-preset-latest-node": "^3.2.1",
+    "chai": "4.2.0",
+    "cz-conventional-changelog": "3.2.0",
+    "esdoc": "1.1.0",
+    "esdoc-ecmascript-proposal-plugin": "1.0.0",
+    "esdoc-node": "1.0.5",
+    "esdoc-standard-plugin": "1.0.0",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-webpack": "^0.12.2",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-mocha": "^6.3.0",
+    "eslint-plugin-n": "^15.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "faker": "4.1.0",
+    "husky": "4.2.5",
+    "mocha": "7.2.0",
+    "nyc": "15.1.0",
+    "semantic-release": "17.0.8",
+    "sinon": "8.1.1",
+    "supertest": "4.0.2"
+  },
+  "scripts": {
+    "docs": "./node_modules/.bin/esdoc -c .esdoc.json",
+    "lint": "eslint v1/src/ test/",
+    "lint:fix": "eslint --fix v1/src/ test/",
+    "test": "mocha --recursive --require test/helpers/start.js --exit",
+    "test:unit": "mocha --recursive --require test/helpers/start.js",
+    "test:coverage": "nyc --all --reporter=html --reporter=text mocha --recursive --require test/helpers/start.js",
+    "test:watch": "mocha -w",
+    "transpile": "echo ok",
+    "package": "bash package.sh",
+    "cm": "npx git-cz",
+    "build": "./build.sh",
+    "semantic-release": "semantic-release"
+  },
+  "nyc": {
+    "all": true,
+    "check-coverage": true,
+    "per-file": false,
+    "lines": 90,
+    "statements": 90,
+    "functions": 90,
+    "branches": 90,
+    "include": [
+      "v1/src/**/*.js"
+    ],
+    "exclude": [
+      "v1/src/development/*inspector*.js",
+      "v1/src/message-queue/**/*.js",
+      "v1/src/module.js",
+      "v1/src/orm/**/*.js",
+      "v1/src/tests/mocha-helpers.js",
+      "test/**/*.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "./coverage"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm test",
+      "pre-push": "npm run lint && npm test"
+    }
+  },
+  "homepage": "",
+  "bugs": "",
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
